@@ -1,6 +1,17 @@
+--====================================================================--
+-- dmc_lua/json.lua
+--
+-- a simple, standard way to load json on various systems
+--
+-- Documentation: http://docs.davidmccuskey.com/
+--====================================================================--
+
+
+--[[
+
 The MIT License (MIT)
 
-Copyright (c) 2014-2015 David McCuskey
+Copyright (c) 2015 David McCuskey
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,3 +31,33 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+--]]
+
+
+
+--====================================================================--
+--== Json Shim
+--====================================================================--
+
+
+-- Semantic Versioning Specification: http://semver.org/
+
+local VERSION = "0.1.0"
+
+
+
+--====================================================================--
+--== Setup, Constants
+
+
+local has_json, json
+
+has_json, json = pcall( require, 'dkjson' )
+if not has_json then
+	has_json, json = pcall( require, 'cjson' )
+end
+if not has_json then
+	has_json, json = pcall( require, 'json' )
+end
+
+return json
