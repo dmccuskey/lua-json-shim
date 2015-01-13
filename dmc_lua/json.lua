@@ -50,14 +50,16 @@ local VERSION = "0.1.0"
 --== Setup, Constants
 
 
+-- these are some popular json modules
+local JSON_LIBS = { 'dkjson', 'cjson', 'json' }
+
 local has_json, json
 
-has_json, json = pcall( require, 'dkjson' )
-if not has_json then
-	has_json, json = pcall( require, 'cjson' )
+for _, name in ipairs( JSON_LIBS ) do
+	has_json, json = pcall( require, name )
+	if has_json then break end
 end
-if not has_json then
-	has_json, json = pcall( require, 'json' )
-end
+
+assert( has_json, "json module not found" )
 
 return json
