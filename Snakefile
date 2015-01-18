@@ -9,6 +9,7 @@ except:
 module_config = {
 	"name": "lua-json-shim",
 	"module": {
+		"dir": "dmc_lua",
 		"files": [
 			"json.lua"
 		],
@@ -16,6 +17,7 @@ module_config = {
 		]
 	},
 	"tests": {
+		"dir": "spec",
 		"files": [
 		],
 		"requires": [
